@@ -1,7 +1,10 @@
 #ifndef MOTOR_CONTROL_H
 #define MOTOR_CONTROL_H
+#include <Arduino.h>
 #include <Wire.h>
 #include <SPI.h>
+
+// -----------------------------------------------------------------------------------------------------------------
 #include <SimpleFOC.h>
 
 //电机实例
@@ -35,7 +38,7 @@ void doMotor2(char* cmd) {
 void board_init();
 float get_vin_Volt();
 
-void setup() {
+void motor_init_i() {
   Serial.begin(115200);
   board_init();
 
@@ -145,8 +148,8 @@ void setup() {
   motor2.initFOC();
 
   // 初始目标值
-  motor1.target = 0.0;
-  motor2.target = 0.0;
+  motor1.target = -1.57;
+  motor2.target = -1.57;
 
   // 映射电机到commander
   command.add('A', doMotor1, "motor 1");
@@ -158,7 +161,7 @@ void setup() {
 }
 
 
-void loop() {
+void motor_run_i() {
   motor1.loopFOC();
   motor2.loopFOC();
 
@@ -192,13 +195,13 @@ float get_vin_Volt() {
 }
 
 
+void change_target_right(float a){
+  motor1.target = a;
+}
 
-
-
-
-
-
-
+void change_target_left(float b){
+  motor2.target = b;
+}
 
 
 

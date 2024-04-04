@@ -44,13 +44,32 @@ void cal_fk_p(AIM_C & aim){
 
 // inverse position
 // the calculation of position in forward kinematics
-// in:  phi_1与phi_4角度
-// out: C点的期望位置
+// in:  C点的期望位置
+// out: phi_1与phi_4角度
 void cal_ik_p(AIM_C & aim){
+    float l_1 = 8.0;
+    float l_4 = 8.0;
+    float l_2 = 20.0;
+    float l_3 = 20.0;
+    float l_5 = 18.0;   //cm
 
+    float x_A = 0;
+    float y_A = 0;
+    float x_E = l_5;
+    float y_E = 0;
 
+    float x = aim.x_C;
+    float y = aim.y_C;
 
+    float A_1 = (x - x_A)*(x - x_A) + (y - y_A)*(y - y_A) + l_1*l_1 - l_2*l_2;
+    float B_1 = -2*(x - x_A)*l_1;
+    float C_1 = -2*(y - y_A)*l_1;
+    aim.p_1 = 2*atan2((-C_1+sqrt(C_1*C_1 + B_1*B_1 - A_1*A_1)), (A_1 - B_1));
 
+    float A_2 = (x - x_E)*(x - x_E) + (y - y_E)*(y - y_E) + l_4*l_4 - l_3*l_3;
+    float B_2 = -2*(x - x_E)*l_4;
+    float C_2 = -2*(y - y_E)*l_4;
+    aim.p_4 = 2*atan2((-C_2+sqrt(C_2*C_2 + B_2*B_2 - A_2*A_2)), (A_2 - B_2));
 
 }
  
