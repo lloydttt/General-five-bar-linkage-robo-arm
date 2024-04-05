@@ -74,6 +74,14 @@ void cal_ik_p(AIM_C & aim){
 }
  
 
+void test(AIM_C &a){
+    // float radius = 2;
+    static float theta = 25;
+    a.x_C = (x_A + x_E)/2;
+    a.y_C = theta;
+    if(theta<12) theta = 25;
+    theta -= 0.001;
 
+}
 
 #endif

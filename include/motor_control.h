@@ -1,5 +1,6 @@
 #ifndef MOTOR_CONTROL_H
 #define MOTOR_CONTROL_H
+#pragma once
 #include <Arduino.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -62,8 +63,8 @@ void motor_init_i() {
   motor2.linkDriver(&driver2);
 
   // 电流限制
-  motor1.current_limit = 1;
-  motor2.current_limit = 1;
+  motor1.current_limit = 1.5;
+  motor2.current_limit = 1.5;
 
   // 电压限制
   motor1.voltage_limit = get_vin_Volt();
@@ -110,7 +111,6 @@ void motor_init_i() {
   motor2.PID_current_d.I = 1000;
   motor2.LPF_current_q.Tf = 0.002;  // 1ms default
   motor2.LPF_current_d.Tf = 0.002;  // 1ms default
-
   // 速度环PID参数
   motor1.PID_velocity.P = 0.021;
   motor1.PID_velocity.I = 0.12;
@@ -120,11 +120,13 @@ void motor_init_i() {
   motor2.PID_velocity.I = 0.12;
   motor2.PID_velocity.D = 0;
   // default voltage_power_supply
-  motor1.P_angle.P = 20;
-  motor2.P_angle.P = 20;
+  motor1.P_angle.P = 25;
+  motor1.P_angle.D = 6;
+  motor2.P_angle.P = 25;
+  motor2.P_angle.D = 6;
   // 速度限制
-  motor1.velocity_limit = 20;
-  motor2.velocity_limit = 20;
+  motor1.velocity_limit = 2;
+  motor2.velocity_limit = 2;
 
 
   // monitor接口设置
@@ -148,8 +150,8 @@ void motor_init_i() {
   motor2.initFOC();
 
   // 初始目标值
-  motor1.target = -1.57;
-  motor2.target = -1.57;
+  motor1.target = 1.23;
+  motor2.target = 0.55;
 
   // 映射电机到commander
   command.add('A', doMotor1, "motor 1");
@@ -168,7 +170,7 @@ void motor_run_i() {
   motor1.move();
   motor2.move();
 
-  command.run();
+  // command.run();
 }
 
 void board_init() {
@@ -196,11 +198,11 @@ float get_vin_Volt() {
 
 
 void change_target_right(float a){
-  motor1.target = a;
+  motor1.target = -a+1.23;
 }
 
 void change_target_left(float b){
-  motor2.target = b;
+  motor2.target = -b+0.55;
 }
 
 
