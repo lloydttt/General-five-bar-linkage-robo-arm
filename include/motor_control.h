@@ -120,13 +120,13 @@ void motor_init_i() {
   motor2.PID_velocity.I = 0.12;
   motor2.PID_velocity.D = 0;
   // default voltage_power_supply
-  motor1.P_angle.P = 25;
-  motor1.P_angle.D = 6;
+  motor1.P_angle.P = 15;
+  motor1.P_angle.D = 3;
   motor2.P_angle.P = 25;
-  motor2.P_angle.D = 6;
+  motor2.P_angle.D = 10;
   // 速度限制
-  motor1.velocity_limit = 2;
-  motor2.velocity_limit = 2;
+  motor1.velocity_limit = 3;
+  motor2.velocity_limit = 3;
 
 
   // monitor接口设置

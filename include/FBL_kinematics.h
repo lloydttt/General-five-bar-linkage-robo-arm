@@ -84,4 +84,15 @@ void test(AIM_C &a){
 
 }
 
+
+void test1(AIM_C &a){
+    static float k = 4;
+    a.x_C = k;
+    a.y_C = 17;
+    if(k > 20) k = 4;
+    k += 0.001;
+
+}
+
+
 #endif
