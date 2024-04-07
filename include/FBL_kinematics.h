@@ -90,9 +90,19 @@ void test1(AIM_C &a){
     a.x_C = k;
     a.y_C = 17;
     if(k > 20) k = 4;
-    k += 0.001;
+    k += 0.002;
 
 }
 
+void test2(AIM_C &a){
+    float radius = 5;
+    static float theta = 0; 
+
+
+    a.x_C = radius * cos(theta) +(x_A + x_E)/2;
+    a.y_C = radius * sin(theta) +18;
+    theta += 0.002;
+    if (theta > 2*PI) theta = 0;
+}
 
 #endif

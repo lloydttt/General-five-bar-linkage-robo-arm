@@ -125,8 +125,8 @@ void motor_init_i() {
   motor2.P_angle.P = 25;
   motor2.P_angle.D = 10;
   // 速度限制
-  motor1.velocity_limit = 3;
-  motor2.velocity_limit = 3;
+  motor1.velocity_limit = 13;
+  motor2.velocity_limit = 13;
 
 
   // monitor接口设置

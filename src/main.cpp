@@ -30,7 +30,7 @@ void loop(){
   //   delay(2000);
   //   flag = false;
   // }
-  test(aa);
+  test2(aa);
   cal_ik_p(aa);
   change_target_right(aa.p_4);
   change_target_left(aa.p_1);
